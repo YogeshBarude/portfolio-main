@@ -7,21 +7,21 @@ const footerConfig = {
     icons: [
         {
             id: "footer-0",
-            url: "https://github.com/Aaryaveerkrishna23",
+            url: "https://github.com/YogeshBarude",
             className: "social-icon",
             target: "_blank",
             icon: <AiFillGithub size={50}/>
         },
         {
             id: "footer-1",
-            url: "https://www.linkedin.com/in/arya-veer-krishna-960399218/",
+            url: "https://www.linkedin.com/in/yogesh-barude1307/",
             className: "social-icon",
             target: "_blank",
             icon: <FaLinkedinIn size={50}/>
         },
         {
             id: "footer-2",
-            url: "https://medium.com/@krishnaaryaveer",
+            url: "https://medium.com/@yogeshbarude",
             className: "social-icon",
             target: "_blank",
             icon: <BsMedium size={50}/>

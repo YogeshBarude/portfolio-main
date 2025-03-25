@@ -133,11 +133,11 @@ const Home = () => {
                             <Button 
                                variant="contained" 
                                color="primary"
-                               href="/Yogesh_CV.pdf"
+                               href="https://drive.google.com/drive/folders/1VkOJZl5eNNrs5AV7PS4nRHD3R3Rc-f-N?usp=sharing"
                                target="_blank"
                                download
                            >
-                               Download My Resume
+                               View my resume
                            </Button>
 
                         </Box>
@@ -165,13 +165,7 @@ const Home = () => {
                 </Box>
             </Container>
 
-            {/* Chat Widget */}
-            <Widget
-                handleNewUserMessage={handleNewUserMessage}
-                profileAvatar=""
-                title="Yogesh"
-                subtitle="Welcome to my AI powered chatbot!"
-            />
+           
 
        
         </section>
