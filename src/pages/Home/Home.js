@@ -124,20 +124,22 @@ const Home = () => {
                             <DynamicTyping titles={homeConfig.titles} />
                         </Box>
                         <Box sx={{ mt: isMobile ? 2 : 4 }}>
-                            <About about={homeConfig.about} />
+                            <About about={homeConfig.about} /> 
                         </Box>
+
                         
                         {/* Add Resume Button */}
                         <Box sx={{ mt: 4 }}>
                             <Button 
                                variant="contained" 
                                color="primary"
-                               href="https://thumbs.dreamstime.com/z/creative-design-come-back-later-message-come-back-later-message-118578152.jpg" 
+                               href="/Yogesh_CV.pdf"
                                target="_blank"
                                download
                            >
                                Download My Resume
                            </Button>
+
                         </Box>
                     </Grid>
                 </Grid>

@@ -18,12 +18,17 @@ const About = (props) => {
               }
           />
           <CardContent sx={{ fontSize: '132%', lineHeight: '150%', backgroundColor: '#F6F6F6', color: '#8e8d8a', padding: '2rem' }}>
+          || Bridging the Gap Between Technology & Business ||
+          <br/>
+          <br/>
             <Typography variant="body1" paragraph>
               {start}
             </Typography>
             <Typography variant="body1">
               {exit}
             </Typography>
+            <br/>
+            Let’s connect and shape the future of AI-powered enterprises!
           </CardContent>
         </Card>
       </Box>

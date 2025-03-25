@@ -17,11 +17,10 @@ const homeConfig = {
         "An Indian"
     ],
     about: {
-        start: "|| Bridging the Gap Between Technology & Business || " +
-            "MBA graduate in Big Data Analytics with a strong blend of technical expertise and business acumen." +
+        start: "MBA in Big Data Analytics with a strong blend of technical expertise and business acumen." +
             " Passionate about transforming data into strategic business decisions, I excel at solving complex challenges, driving innovation, and leveraging AI to create tangible business impact.",
-        exit: " Fluent in Python, Natural Language Processing, Machine Learning [ML], Data Visualization, Cloud Computing, Advanced Excel, Generative AI, SQL, and more. " +
-            " I combine data-driven decision-making, leadership, problem-solving, and stakeholder management to drive business success. Let’s connect and shape the future of AI-powered enterprises! "
+        exit: " Fluent in Python, Natural Language Processing, Machine Learning, Data Visualization, Cloud Computing, Advanced Excel, Generative AI, SQL, and more. " +
+            " I combine data-driven decision-making, leadership, problem-solving, and stakeholder management to drive business success."
     },
     workTimeline: [
         {
