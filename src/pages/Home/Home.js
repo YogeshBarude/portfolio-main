@@ -166,8 +166,8 @@ const Home = () => {
             {/* Chat Widget */}
             <Widget
                 handleNewUserMessage={handleNewUserMessage}
-                profileAvatar="https://avatars.githubusercontent.com/u/86841659?v=4"
-                title="Aryaveer 2.0"
+                profileAvatar=""
+                title="Yogesh"
                 subtitle="Welcome to my AI powered chatbot!"
             />
 
