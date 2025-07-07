@@ -1,37 +1,51 @@
 import React from 'react';
-import { Card, CardHeader, CardContent, Typography, Box } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 
 const About = (props) => {
   const { about } = props || {};
   const { start, exit } = about || {};
 
   return (
-      <Box id="about" sx={{ my: 4 }}>
-        <Card sx={{ backgroundColor: '#263238', color: '#f5f5f5' }}>
-          <CardHeader
-              avatar={
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Box component="span" className="iconify" data-icon="emojione:red-circle" sx={{ mr: 1 }} />
-                  <Box component="span" className="iconify" data-icon="twemoji:yellow-circle" sx={{ mr: 1}} />
-                  <Box component="span" className="iconify" data-icon="twemoji:green-circle" />
-                </Box>
-              }
-          />
-          <CardContent sx={{ fontSize: '132%', lineHeight: '150%', backgroundColor: '#F6F6F6', color: '#8e8d8a', padding: '2rem' }}>
-          || Bridging the Gap Between Technology & Business ||
-          <br/>
-          <br/>
-            <Typography variant="body1" paragraph>
-              {start}
-            </Typography>
-            <Typography variant="body1">
-              {exit}
-            </Typography>
-            <br/>
-            Let’s connect and shape the future of AI-powered enterprises!
-          </CardContent>
-        </Card>
-      </Box>
+    <Box id="about">
+      <Typography 
+        variant="body1" 
+        sx={{
+          fontSize: '16px',
+          lineHeight: 1.7,
+          color: '#cbd5e1',
+          marginBottom: '16px',
+          textAlign: 'left'
+        }}
+      >
+        {start}
+      </Typography>
+      
+      <Typography 
+        variant="body1"
+        sx={{
+          fontSize: '16px',
+          lineHeight: 1.7,
+          color: '#cbd5e1',
+          textAlign: 'left'
+        }}
+      >
+        {exit}
+      </Typography>
+      
+      <Typography 
+        variant="body1"
+        sx={{
+          fontSize: '16px',
+          lineHeight: 1.7,
+          color: '#3b82f6',
+          fontWeight: 600,
+          marginTop: '24px',
+          textAlign: 'left'
+        }}
+      >
+        Let's connect and shape the future of AI-powered enterprises!
+      </Typography>
+    </Box>
   );
 };
 

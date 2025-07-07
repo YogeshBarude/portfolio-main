@@ -1,5 +1,16 @@
+/* App-specific styles */
 .App {
   position: relative;
   min-height: 100vh;
-  padding-bottom: 6rem;
+}
+
+/* Custom chat widget styles */
+.react-chat-widget {
+  z-index: 1000;
+}
+
+/* Ensure proper scrolling for the main content area */
+.main-content {
+  overflow-y: auto;
+  height: 100vh;
 }

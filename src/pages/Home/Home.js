@@ -1,32 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Box, Typography, Grid, useMediaQuery, Button } from '@mui/material';
+import { Box, Typography, Grid, useMediaQuery, Button, Paper, Chip } from '@mui/material';
 import DynamicTyping from '../../components/DynamicTyping';
 import About from '../../components/About';
 import Timeline from '../../components/Timeline/Timeline';
 import homeConfig from '../../assets/configs/homeConfig';
 import { Widget, addResponseMessage } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
-import './customChatStyles.css';  // Import the custom styles
-import logo from './logo.png'; // Sample logo for the avatar
+import './customChatStyles.css';
+import logo from './logo.png';
 
 import { ref, set } from 'firebase/database';
-import { database } from './firebase.js';  // Adjust the path based on your setup
-import { v4 as uuidv4 } from 'uuid';  // For generating session IDs
-
-
+import { database } from './firebase.js';
+import { v4 as uuidv4 } from 'uuid';
 
 const Home = () => {
-    const isMobile = useMediaQuery('(max-width:600px)');
-    const [sessionId] = useState(uuidv4());  // Generate a unique session ID per user session
-    const [chatHistory, setChatHistory] = useState([]);  // Store the conversation history as an array
-    const [loading, setLoading] = useState(false);  // Loading state to show typing indicator
+    const isMobile = useMediaQuery('(max-width:900px)');
+    const [sessionId] = useState(uuidv4());
+    const [chatHistory, setChatHistory] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-    // Send a welcome message when the chat widget is first loaded
     useEffect(() => {
-        addResponseMessage('Hi , You are talking to me!');
+        addResponseMessage('Hi, You are talking to me!');
     }, []);
 
-    // Function to log messages to Firebase
     const logToFirebase = (userMessage, botResponse) => {
         const timestamp = Date.now();
         const sessionRef = ref(database, `chatSessions/${sessionId}/${timestamp}`);
@@ -37,56 +33,45 @@ const Home = () => {
         });
     };
 
-    // Handle message submission and send the query to your API
     const handleNewUserMessage = async (newMessage) => {
-        if (!newMessage.trim()) return;  // Prevent empty submissions
+        if (!newMessage.trim()) return;
 
-        // Add new user message to chat history
         const updatedChatHistory = [...chatHistory, { user: newMessage, bot: null }];
         setChatHistory(updatedChatHistory);
-
-        setLoading(true);  // Show loading indicator
+        setLoading(true);
 
         try {
-            // Prepare formatted context (user and bot conversations)
             const formattedContext = updatedChatHistory
                 .map((entry) => `User: ${entry.user} | Bot: ${entry.bot || 'Pending'}`)
                 .join(' || ');
 
-            // Prepare the payload text with query and context
             const textPayload = `New Query: ${newMessage},\nUser's chat Message History:\n` + 
                 chatHistory
                     .map((entry, index) => `#${index + 1}\nUser: ${entry.user}\nBot: ${entry.bot || 'Pending'}`)
                     .join('\n\n');
 
-            // Debugging: log the full text being sent to the server
             console.log("Text being sent:", textPayload);
 
-            // Send the query along with the updated context to the API
             const res = await fetch('https://vercel-lyart-gamma.vercel.app/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    text: textPayload  // Send the current query with context
+                    text: textPayload
                 }),
             });
 
-            // Load response as raw JSON
             const rawResponse = await res.json();
             console.log("Raw API Response: ", rawResponse);
 
-            // Check if the response has text property
             if (rawResponse && rawResponse.text) {
-                addResponseMessage(rawResponse.text);  // Display the bot's response
+                addResponseMessage(rawResponse.text);
 
-                // Update chat history with bot response
                 const finalChatHistory = [...updatedChatHistory];
-                finalChatHistory[finalChatHistory.length - 1].bot = rawResponse.text;  // Add bot response to the latest chat
-                setChatHistory(finalChatHistory);  // Update chat history
+                finalChatHistory[finalChatHistory.length - 1].bot = rawResponse.text;
+                setChatHistory(finalChatHistory);
 
-                // Log the conversation to Firebase
                 logToFirebase(newMessage, rawResponse.text);
             } else {
                 addResponseMessage('Error: Invalid response from server.');
@@ -96,79 +81,74 @@ const Home = () => {
             addResponseMessage('Error: Unable to fetch response. Please try again later.');
         }
 
-        setLoading(false);  // Hide loading indicator after response
+        setLoading(false);
     };
 
     return (
-        <section>
-            <Container maxWidth="xl" className="home-content" id="home">
-                <Grid
-                    container
-                    justifyContent="center"
-                    alignItems="center"
-                    className="home-header"
-                    sx={{ flexDirection: isMobile ? 'column' : 'row' }} // Stack items vertically on mobile
-                >
-                    <Grid item xs={12} style={{ textAlign: 'center' }}>
-                        <Typography
-                            variant="h1"
-                            sx={{
-                                color: '#f5f5f5',
-                                fontSize: isMobile ? '2em' : '3em', // Reduce font size for mobile
-                                textAlign: 'center',
-                            }}
-                        >
-                            {homeConfig.greeting}
-                        </Typography>
-                        <Box sx={{ textAlign: 'center', mt: isMobile ? 1 : 2 }}>
-                            <DynamicTyping titles={homeConfig.titles} />
-                        </Box>
-                        <Box sx={{ mt: isMobile ? 2 : 4 }}>
-                            <About about={homeConfig.about} /> 
-                        </Box>
-
-                        
-                        {/* Add Resume Button */}
-                        <Box sx={{ mt: 4 }}>
-                            <Button 
-                               variant="contained" 
-                               color="primary"
-                               href="https://drive.google.com/drive/folders/1VkOJZl5eNNrs5AV7PS4nRHD3R3Rc-f-N?usp=sharing"
-                               target="_blank"
-                               download
-                           >
-                               View my resume
-                           </Button>
-
-                        </Box>
-                    </Grid>
-                </Grid>
-            </Container>
-            
-            <Container
-                maxWidth="xl"
-                className="resume-content"
-                id="resume"
-                sx={{
-                    mt: isMobile ? 4 : 6, // Adjust margin-top for mobile
-                    padding: isMobile ? '0 16px' : '0', // Add padding on mobile for better spacing
-                }}
-            >
-                <Box
+        <Box sx={{
+            backgroundColor: '#0b1120',
+            minHeight: '100vh',
+            padding: isMobile ? '24px 16px' : '48px 64px'
+        }}>
+            {/* About Section */}
+            <Box sx={{ marginBottom: '64px' }}>
+                <Typography 
+                    variant="h2" 
                     sx={{
-                        width: '100%',
-                        maxWidth: isMobile ? '100%' : '960px', // Take full width on mobile
-                        mx: 'auto',
+                        fontSize: isMobile ? '32px' : '48px',
+                        fontWeight: 800,
+                        color: '#ffffff',
+                        marginBottom: '16px',
+                        lineHeight: 1.2
                     }}
                 >
+                    About Me
+                </Typography>
+                
+                <Box sx={{ marginBottom: '24px' }}>
+                    <DynamicTyping titles={homeConfig.titles} />
+                </Box>
+                
+                <Paper sx={{
+                    backgroundColor: '#1e293b',
+                    padding: '32px',
+                    borderRadius: '12px',
+                    border: '1px solid #334155'
+                }}>
+                    <About about={homeConfig.about} />
+                </Paper>
+            </Box>
+
+            {/* Experience Section */}
+            <Box sx={{ marginBottom: '64px' }}>
+                <Typography 
+                    variant="h2" 
+                    sx={{
+                        fontSize: isMobile ? '32px' : '48px',
+                        fontWeight: 800,
+                        color: '#ffffff',
+                        marginBottom: '32px',
+                        lineHeight: 1.2
+                    }}
+                >
+                    Experience & Education
+                </Typography>
+                
+                <Box sx={{
+                    maxWidth: '1000px'
+                }}>
                     <Timeline items={homeConfig.workTimeline} />
                 </Box>
-            </Container>
+            </Box>
 
-           
-
-       
-        </section>
+            {/* Chat Widget */}
+            <Widget
+                handleNewUserMessage={handleNewUserMessage}
+                profileAvatar={logo}
+                title="Chat with Yogesh"
+                subtitle="Ask me anything about my work!"
+            />
+        </Box>
     );
 };
 

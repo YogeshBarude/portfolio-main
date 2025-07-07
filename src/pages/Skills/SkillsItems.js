@@ -1,30 +1,56 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 
 const SkillsItems = (props) => {
+    const isMobile = useMediaQuery('(max-width:900px)');
+
     return (
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 2 }}>
+        <Box sx={{ 
+            display: 'flex', 
+            flexWrap: 'wrap', 
+            justifyContent: 'center', 
+            gap: isMobile ? '16px' : '24px',
+            maxWidth: '100%'
+        }}>
             {props.config.map((item) => (
                 <Box
                     key={item.id}
                     sx={{
-                        color: '#263238',
+                        color: '#cbd5e1',
                         textAlign: 'center',
-                        padding: '1.5rem',
-                        backgroundColor: '#ffffff',
-                        margin: '1.5rem',
-                        borderRadius: '15px',
-                        boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
-                        transition: 'transform 0.3s, box-shadow 0.3s',
+                        padding: isMobile ? '20px 16px' : '24px 20px',
+                        backgroundColor: '#334155',
+                        borderRadius: '12px',
+                        border: '1px solid #475569',
+                        transition: 'all 0.3s ease',
+                        minWidth: isMobile ? '120px' : '140px',
                         '&:hover': {
-                            transform: 'translateY(-5px)',
-                            boxShadow: '0px 6px 30px rgba(0, 0, 0, 0.15)',
+                            transform: 'translateY(-4px)',
+                            backgroundColor: '#3b82f6',
+                            color: '#ffffff',
+                            borderColor: '#3b82f6',
+                            boxShadow: '0 8px 25px rgba(59, 130, 246, 0.3)',
                             cursor: 'pointer',
                         },
                     }}
                 >
-                    {item.icon}
-                    <Typography variant="body2" sx={{ marginTop: '0.6rem', fontWeight: 'bold' }}>
+                    <Box sx={{
+                        fontSize: isMobile ? '32px' : '40px',
+                        marginBottom: '12px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                        {item.icon}
+                    </Box>
+                    <Typography 
+                        variant="body2" 
+                        sx={{ 
+                            fontSize: '14px',
+                            fontWeight: 600,
+                            lineHeight: 1.4
+                        }}
+                    >
                         {item.text}
                     </Typography>
                 </Box>

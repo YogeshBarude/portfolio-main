@@ -1,30 +1,88 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 import SkillsItems from './SkillsItems';
 import skillsConfig from '../../assets/configs/skillsConfig';
 
 const Skills = () => {
+    const isMobile = useMediaQuery('(max-width:900px)');
+
     return (
-        <section id="skills">
-            <Box sx={{ textAlign: 'center', py: 4, backgroundColor: '#f0f0f0', borderRadius: '15px', boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', mb: 6 }}>
-                <Typography variant="h3" component="h1" sx={{ color: '#263238', py: 2 }}>
-                    <strong>Main Skills & Tools</strong>
-                </Typography>
-                    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-                        <SkillsItems config={skillsConfig.mainSkills} />
-                    </Box>
+        <Box sx={{
+            backgroundColor: '#0b1120',
+            minHeight: '100vh',
+            padding: isMobile ? '24px 16px' : '48px 64px'
+        }}>
+            <Typography 
+                variant="h2" 
+                sx={{
+                    fontSize: isMobile ? '32px' : '48px',
+                    fontWeight: 800,
+                    color: '#ffffff',
+                    marginBottom: '48px',
+                    lineHeight: 1.2,
+                    textAlign: 'center'
+                }}
+            >
+                Skills & Tools
+            </Typography>
 
+            {/* Main Skills Section */}
+            <Box sx={{ 
+                marginBottom: '64px',
+                backgroundColor: '#1e293b',
+                borderRadius: '16px',
+                padding: '40px',
+                border: '1px solid #334155'
+            }}>
+                <Typography 
+                    variant="h3" 
+                    sx={{
+                        fontSize: isMobile ? '24px' : '32px',
+                        fontWeight: 700,
+                        color: '#ffffff',
+                        marginBottom: '32px',
+                        textAlign: 'center'
+                    }}
+                >
+                    Core Skills
+                </Typography>
+                
+                <Box sx={{ 
+                    display: 'flex', 
+                    justifyContent: 'center'
+                }}>
+                    <SkillsItems config={skillsConfig.mainSkills} />
+                </Box>
             </Box>
 
-            <Box sx={{ textAlign: 'center', py: 4, backgroundColor: '#f0f0f0', borderRadius: '15px', boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)' }}>
-                <Typography variant="h3" component="h1" sx={{ color: '#263238', py: 2 }}>
-                    <strong>Complementary Skills & Tools</strong>
+            {/* Complementary Skills Section */}
+            <Box sx={{ 
+                backgroundColor: '#1e293b',
+                borderRadius: '16px',
+                padding: '40px',
+                border: '1px solid #334155'
+            }}>
+                <Typography 
+                    variant="h3" 
+                    sx={{
+                        fontSize: isMobile ? '24px' : '32px',
+                        fontWeight: 700,
+                        color: '#ffffff',
+                        marginBottom: '32px',
+                        textAlign: 'center'
+                    }}
+                >
+                    Additional Skills
                 </Typography>
-                    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-                        <SkillsItems config={skillsConfig.complementarySkills} />
-                    </Box>
+                
+                <Box sx={{ 
+                    display: 'flex', 
+                    justifyContent: 'center'
+                }}>
+                    <SkillsItems config={skillsConfig.complementarySkills} />
+                </Box>
             </Box>
-        </section>
+        </Box>
     );
 }
 
