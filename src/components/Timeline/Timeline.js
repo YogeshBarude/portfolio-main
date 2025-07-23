@@ -42,13 +42,14 @@ const CustomTimeline = (props) => {
                                 }} 
                             />
                         </TimelineSeparator>
-                        
                         <TimelineContent
                             sx={{
                                 py: '12px',
                                 px: isMobile ? 2 : 2,
                                 width: isMobile ? 'calc(100% - 60px)' : '100%',
                                 marginLeft: isMobile ? '-10px' : '0px',
+                                display: 'flex',
+                                justifyContent: 'center',
                             }}
                             className="MuiTimelineContent-root"
                         >
@@ -56,7 +57,8 @@ const CustomTimeline = (props) => {
                                 elevation={0}
                                 sx={{
                                     p: isMobile ? 3 : 4,
-                                    width: isMobile ? '100%' : 'auto',
+                                    width: isMobile ? '100%' : '600px',
+                                    maxWidth: '100%',
                                     backgroundColor: '#1e293b',
                                     borderRadius: '12px',
                                     border: '1px solid #334155',
@@ -71,7 +73,7 @@ const CustomTimeline = (props) => {
                                 <Box sx={{
                                     display: 'flex',
                                     justifyContent: 'space-between',
-                                    alignItems: 'flex-start',
+                                    alignItems: isMobile ? 'flex-start' : 'center',
                                     marginBottom: '16px',
                                     flexDirection: isMobile ? 'column' : 'row',
                                     gap: isMobile ? '8px' : 0
@@ -85,7 +87,8 @@ const CustomTimeline = (props) => {
                                                 fontSize: '20px',
                                                 fontWeight: 700,
                                                 marginBottom: '4px',
-                                                lineHeight: 1.3
+                                                lineHeight: 1.3,
+                                                textAlign: isMobile ? 'center' : 'left',
                                             }}
                                         >
                                             {title}
@@ -96,7 +99,8 @@ const CustomTimeline = (props) => {
                                                 color: '#3b82f6',
                                                 fontSize: '16px',
                                                 fontWeight: 600,
-                                                marginBottom: '4px'
+                                                marginBottom: '4px',
+                                                textAlign: isMobile ? 'center' : 'left',
                                             }}
                                         >
                                             {company}
@@ -108,30 +112,31 @@ const CustomTimeline = (props) => {
                                             color: '#94a3b8',
                                             fontSize: '14px',
                                             fontWeight: 500,
-                                            textAlign: isMobile ? 'left' : 'right'
+                                            textAlign: isMobile ? 'center' : 'right',
+                                            minWidth: isMobile ? '100%' : '120px',
                                         }}
                                     >
                                         {date}
                                     </Typography>
                                 </Box>
-                                
                                 <Typography
                                     variant="body1"
                                     sx={{
                                         color: '#cbd5e1',
                                         fontSize: '15px',
                                         lineHeight: 1.6,
-                                        marginBottom: '20px'
+                                        marginBottom: '20px',
+                                        textAlign: isMobile ? 'center' : 'left',
                                     }}
                                     className="timeline-description"
                                 >
                                     {description}
                                 </Typography>
-                                
                                 <Box sx={{
                                     display: 'flex',
                                     flexWrap: 'wrap',
-                                    gap: '8px'
+                                    gap: '8px',
+                                    justifyContent: isMobile ? 'center' : 'flex-start',
                                 }}>
                                     {tags && tags.map((tag, index) => (
                                         <Chip

@@ -7,13 +7,6 @@ import { BsMedium } from "react-icons/bs";
 const menuConfig = {
   sidebarData: [
     {
-      id: "menu-0",
-      title: "About",
-      path: "/portfolio-main",
-      icon: <AiFillHome size={20} />,
-      className: "nav-text",
-    },
-    {
       id: "menu-1",
       title: "Experience",
       path: "/portfolio-main#experience",
