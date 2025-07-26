@@ -128,16 +128,66 @@ const Home = () => {
                         fontWeight: 800,
                         color: '#ffffff',
                         marginBottom: '32px',
-                        lineHeight: 1.2
+                        lineHeight: 1.2,
+                        textAlign: 'left'
                     }}
                 >
                     Experience & Education
                 </Typography>
-                
-                <Box sx={{
-                    maxWidth: '1000px'
-                }}>
-                    <Timeline items={homeConfig.workTimeline} />
+                <Box sx={{ maxWidth: '1000px', margin: '0 auto' }}>
+                    {homeConfig.workTimeline
+                        .slice() // copy array
+                        .sort((a, b) => (b.date > a.date ? 1 : -1)) // latest first (string compare)
+                        .map((item) => (
+                        <Paper
+                            key={item.id}
+                            elevation={3}
+                            sx={{
+                                mb: 4,
+                                p: isMobile ? 3 : 4,
+                                borderRadius: '16px',
+                                boxShadow: '0 4px 24px rgba(59,130,246,0.08)',
+                                backgroundColor: '#1e293b',
+                                border: '1px solid #334155',
+                                textAlign: 'left',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: 2
+                            }}
+                        >
+                            <Typography variant="h6" sx={{ color: '#fff', fontWeight: 700, mb: 1 }}>
+                                {item.title}
+                            </Typography>
+                            <Typography variant="subtitle1" sx={{ color: '#3b82f6', fontWeight: 600, mb: 1 }}>
+                                {item.company}
+                                {item.date && (
+                                    <span style={{ color: '#94a3b8', fontWeight: 400, fontSize: '15px', marginLeft: 8 }}>
+                                        {item.date}
+                                    </span>
+                                )}
+                            </Typography>
+                            <Typography variant="body1" sx={{ color: '#cbd5e1', mb: 2, fontSize: '16px', lineHeight: 1.7 }}>
+                                {item.description}
+                            </Typography>
+                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                {item.tags && item.tags.map((tag, idx) => (
+                                    <Chip
+                                        key={idx}
+                                        label={tag}
+                                        size="small"
+                                        sx={{
+                                            backgroundColor: '#334155',
+                                            color: '#cbd5e1',
+                                            fontWeight: 500,
+                                            fontSize: '13px',
+                                            letterSpacing: '0.2px',
+                                            borderRadius: '16px',
+                                        }}
+                                    />
+                                ))}
+                            </Box>
+                        </Paper>
+                    ))}
                 </Box>
             </Box>
 

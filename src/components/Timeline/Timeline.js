@@ -73,10 +73,10 @@ const CustomTimeline = (props) => {
                                 <Box sx={{
                                     display: 'flex',
                                     justifyContent: 'space-between',
-                                    alignItems: isMobile ? 'flex-start' : 'center',
+                                    alignItems: 'center',
                                     marginBottom: '16px',
-                                    flexDirection: isMobile ? 'column' : 'row',
-                                    gap: isMobile ? '8px' : 0
+                                    flexDirection: 'row',
+                                    gap: 0
                                 }}>
                                     <Box sx={{ flex: 1 }}>
                                         <Typography
@@ -88,7 +88,7 @@ const CustomTimeline = (props) => {
                                                 fontWeight: 700,
                                                 marginBottom: '4px',
                                                 lineHeight: 1.3,
-                                                textAlign: isMobile ? 'center' : 'left',
+                                                textAlign: 'left',
                                             }}
                                         >
                                             {title}
@@ -100,7 +100,7 @@ const CustomTimeline = (props) => {
                                                 fontSize: '16px',
                                                 fontWeight: 600,
                                                 marginBottom: '4px',
-                                                textAlign: isMobile ? 'center' : 'left',
+                                                textAlign: 'left',
                                             }}
                                         >
                                             {company}
@@ -112,8 +112,8 @@ const CustomTimeline = (props) => {
                                             color: '#94a3b8',
                                             fontSize: '14px',
                                             fontWeight: 500,
-                                            textAlign: isMobile ? 'center' : 'right',
-                                            minWidth: isMobile ? '100%' : '120px',
+                                            textAlign: 'right',
+                                            minWidth: '120px',
                                         }}
                                     >
                                         {date}
@@ -126,7 +126,7 @@ const CustomTimeline = (props) => {
                                         fontSize: '15px',
                                         lineHeight: 1.6,
                                         marginBottom: '20px',
-                                        textAlign: isMobile ? 'center' : 'left',
+                                        textAlign: 'left',
                                     }}
                                     className="timeline-description"
                                 >
@@ -136,7 +136,7 @@ const CustomTimeline = (props) => {
                                     display: 'flex',
                                     flexWrap: 'wrap',
                                     gap: '8px',
-                                    justifyContent: isMobile ? 'center' : 'flex-start',
+                                    justifyContent: 'flex-start',
                                 }}>
                                     {tags && tags.map((tag, index) => (
                                         <Chip
@@ -148,6 +148,7 @@ const CustomTimeline = (props) => {
                                                 color: '#cbd5e1',
                                                 fontSize: '12px',
                                                 fontWeight: 500,
+                                                textAlign: 'left',
                                                 '&:hover': {
                                                     backgroundColor: '#3b82f6',
                                                     color: '#ffffff'
